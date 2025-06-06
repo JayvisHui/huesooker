@@ -9,7 +9,7 @@ root=Tk()
 root.title("HueSeeker.V1")
 root.minsize(width=700, height=500)
 
-ico = Image.open("hueseek.png")
+ico = PILImage.open("hueseek.png")
 photo= ImageTk.PhotoImage(ico)
 root.wm_iconphoto(False, photo)
 
