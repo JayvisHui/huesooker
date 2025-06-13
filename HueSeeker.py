@@ -27,9 +27,13 @@ intro = Frame(int1, bg= "#474747")
 desc = Frame(intro,bg= "#474747")
 desc.pack(expand=True, pady=(0,150))
 
-
-Label(desc,  text = "HueSeeker",font=("Arial",35),bg= "#474747",fg = "white").grid(row=0,column=2)
-Label(desc,  text = "Welcome to Hueseeker V1!",bg= "#474747",font=("Arial",25),fg = "white").grid(row=1,column=2)
+logo = PILImage.open("hueseekw.png")
+eye = logo.resize((150,150))
+eye2= ImageTk.PhotoImage(eye)
+eyelog = Label(desc, image=eye2)
+eyelog.grid(row=0,column=2)
+Label(desc,  text = "HueSeeker",font=("Arial",35),bg= "#474747",fg = "white").grid(row=1,column=2)
+Label(desc,  text = "Welcome to Hueseeker V1!",bg= "#474747",font=("Arial",25),fg = "white").grid(row=2,column=2)
 
 
 act = Button(desc,text = "Activate",command=lambda: (show_frame(mainpag),opencamera(cap, dihchees, swidth, sheight)),height=3,width=15,font=("Arial",15),).grid(row=5,column=2)
@@ -74,7 +78,7 @@ Label(gooningL, fg="white",text="Insert Color Here",bg="#474747").pack(anchor='e
 
 usebut=Button(gooningL,text="Input Desired Color", command=lambda:(colp(gooningL),)).pack(anchor='e',expand=True,fill=BOTH,padx=5,pady=1)
 
-    
+
 
 for frame in (mainpag, intro):
     frame.grid(row=0, column=0, sticky="nsew")

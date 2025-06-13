@@ -9,7 +9,15 @@ def show_frame(frame):
  
 def colp(gooningL): #function to open the color gui
     usecol = colorchooser.askcolor()
-    recol = Label(gooningL, text=usecol).pack()
+    hex = usecol[1]
+
+    if hex:
+        Label(gooningL, text=f"selected {hex}",bg=hex,fg="white").pack()
+
+        with open("color.txt","a") as file:
+            file.write(hex +"\n")
+
+
 
 
 def opencamera(cap, dihchees, swidth, sheight):
