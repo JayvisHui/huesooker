@@ -70,14 +70,14 @@ gooningL.pack(side="right",anchor="se",fill=BOTH,expand=True)
 Button(gooningL,text="Quit Hueseeker",command=root.destroy,fg="red",bg="grey").pack(anchor="ne", padx= 15,expand=True)
 
 Label(gooningL,text="Records",fg="white",bg="#242526").pack()
-logscreen = Frame(gooningL, bg="#242526", height=300, width=200)
+logscreen = Frame(gooningL, bg="#242526", height=200, width=200)
 logscreen.pack(side="top", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
 
 
 Label(gooningL, fg="white",text="Insert Color Here",bg="#474747").pack(anchor='e',expand=True,fill=BOTH,padx=5)
-
-usebut=Button(gooningL,text="Input Desired Color", command=lambda:(colp(gooningL),)).pack(anchor='e',expand=True,fill=BOTH,padx=5,pady=1)
-
+usebut=Button(gooningL,text="Input Desired Color", command=lambda:(colp(section),)).pack(anchor='e',expand=True,fill=BOTH,padx=5,pady=1)
+section = Frame(gooningL, bg="#242526",height=100,width=200)
+section.pack(side="bottom", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
 
 
 for frame in (mainpag, intro):
