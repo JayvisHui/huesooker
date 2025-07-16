@@ -6,9 +6,7 @@ import cv2
 from HSKF import *
 import datetime
 import numpy as np
-
-
-
+from HSCR import *
 
 root=Tk()
 root.title("HueSeeker.V1")

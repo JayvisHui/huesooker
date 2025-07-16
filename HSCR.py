@@ -2,32 +2,40 @@ import numpy as np
 import cv2 
 from PIL import Image as PILImage, ImageTk
 
-def opencamera(cap, dihchees, swidth, sheight):
+def opencamera(cap, dihchees, swidth, sheight, upper, lower):
 
-
+    ret,frame = cap.read()
+    if not ret:
+        print("failed :(")
+        return
+        
+    hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)    
+   
+    resized = cv2.resize(hsv, (swidth, sheight))
 
     captureim = PILImage.fromarray(resized)
     
     photoim = ImageTk.PhotoImage(image=captureim)
 
+    dihchees.configure(image=photoim)
     dihchees.photoimage = photoim
 
-    dihchees.configure(image=photoim)
+    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight,upper,lower))
 
-    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
+    kernal = np.ones((5,5),"uint8")
+
+    mask = cv2.inRange(hsv, lower, upper)
+    mask = cv2.dilate(mask,np.ones((5,5), "uint8"))
+    res = cv2.bitwise_and(frame, frame, mask=mask)
+
+
+    contours,ret = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    for contour in contours:
+        area = cv2.contourArea(contour)
+        if (area < 300):
+            x,y,w,h = cv2.boundingRect(contour)
+        imageFrame = cv2.rectangle(frame, (x,y), (x+y+w+h), ( ))
     
-    while (1):
-        ret,frame = cap.read()
-        if not ret:
-            print("failed :(")
-            return
-    
-        opencv_image = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)[0][0]
-        h,s,v = opencv_image
-
-        resized = cv2.resize(opencv_image, (swidth, sheight))
-
-        upper = np.array([max(h - 10,0),100,100])
-        lower = np.array([min(h+10,179),255,255])
 
         

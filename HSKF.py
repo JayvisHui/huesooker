@@ -7,7 +7,7 @@ def show_frame(frame):
 
  
 def colp(section): 
-    usecol = colorchooser.askcolor()
+    usecol = colorchooser.askcolor()  #store to to txt file function
     print("Color selected:", usecol)
 
     hex = usecol[1]
