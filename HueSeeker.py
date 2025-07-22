@@ -3,7 +3,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from tkinter import colorchooser
 import cv2
-from HSKF import colp, show_frame
+from HSKF import *
 import datetime
 import numpy as np
 from HSCR import *
@@ -76,15 +76,6 @@ usebut=Button(gooningL,text="Input Desired Color", command=lambda:(colp(section)
 
 section = Frame(gooningL, bg="#242526",height=100,width=200)
 section.pack(side="bottom", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
-
-
-lower, upper = colp(section)
-
-if lower is None:
-    print("You need to pick SOMETHING.")
-
-for frame in (mainpag, intro):
-    frame.grid(row=0, column=0, sticky="nsew")
 
 
 

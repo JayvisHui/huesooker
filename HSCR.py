@@ -10,8 +10,6 @@ def opencamera(cap, dihchees, swidth, sheight):
         return
     
 
-
-
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)    
    
     resized = cv2.resize(hsv, (swidth, sheight))
@@ -25,11 +23,6 @@ def opencamera(cap, dihchees, swidth, sheight):
 
     dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
 
-    kernal = np.ones((5,5),"uint8")
-
-    mask = cv2.inRange(hsv, lower, upper)
-    mask = cv2.dilate(mask,np.ones((5,5), "uint8"))
-    res = cv2.bitwise_and(frame, frame, mask=mask)
 
 
 
