@@ -32,16 +32,5 @@ def opencamera(cap, dihchees, swidth, sheight):
     res = cv2.bitwise_and(frame, frame, mask=mask)
 
 
-    contours,ret = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-    for contour in contours:
-        area = cv2.contourArea(contour)
-        if (area > 300):
-            x,y,w,h = cv2.boundingRect(contour)
-            imageFrame = cv2.rectangle(frame, (x,y), (x+w, y+h), (0,0,255),2)
-            thetext = cv2.putText(imageFrame, "Custom Color #1", (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1.0,(0,0,255))
-
-    
-    
 
         
