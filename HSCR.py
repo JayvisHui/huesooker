@@ -2,13 +2,16 @@ import numpy as np
 import cv2 
 from PIL import Image as PILImage, ImageTk
 
-def opencamera(cap, dihchees, swidth, sheight, upper, lower):
+def opencamera(cap, dihchees, swidth, sheight):
 
     ret,frame = cap.read()
     if not ret:
         print("failed :(")
         return
-        
+    
+
+
+
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)    
    
     resized = cv2.resize(hsv, (swidth, sheight))
@@ -20,7 +23,7 @@ def opencamera(cap, dihchees, swidth, sheight, upper, lower):
     dihchees.configure(image=photoim)
     dihchees.photoimage = photoim
 
-    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight,upper,lower))
+    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
 
     kernal = np.ones((5,5),"uint8")
 
@@ -33,9 +36,12 @@ def opencamera(cap, dihchees, swidth, sheight, upper, lower):
 
     for contour in contours:
         area = cv2.contourArea(contour)
-        if (area < 300):
+        if (area > 300):
             x,y,w,h = cv2.boundingRect(contour)
-        imageFrame = cv2.rectangle(frame, (x,y), (x+y+w+h), ( ))
+            imageFrame = cv2.rectangle(frame, (x,y), (x+w, y+h), (0,0,255),2)
+            thetext = cv2.putText(imageFrame, "Custom Color #1", (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1.0,(0,0,255))
+
+    
     
 
         
