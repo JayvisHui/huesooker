@@ -1,30 +1,39 @@
 from tkinter import *
-import cv2  
+import cv2.cv2
 import numpy as np
 from tkinter import colorchooser
 import cv2
-
-def show_frame(frame): 
+from PIL import Image as PILImage, ImageTk
+ 
+def show_frame(frame):
     frame.tkraise()
 
- 
+
 def colp(section): 
+
     usecol = colorchooser.askcolor()  #store to to txt file function
     print("Color selected:", usecol)
-
-
     hex = usecol[1]
 
-    if usecol[0] is None:
-        return None,None
+    
+    
+def opencamera(cap, dihchees, swidth, sheight):
 
-    if hex:
-        red = Label(section, text=f"selected {hex}", bg=hex, fg="white").pack()
+    ret,frame = cap.read()
+    if not ret:
+        print("failed :(")
+        return
+
+    cv2.imwrite("debug_raw.jpg", frame)
+
+    resized = cv2.resize((swidth, sheight))
+
+    captureim = PILImage.fromarray(resized)
     
-        try:
-            with open("color.txt", "a") as file:
-                file.write(hex + "\n")
-                print("Written to file:", hex)
-        except Exception as e:
-            print("Failed to write to file:", e)
-    
+    photoim = ImageTk.PhotoImage(image=captureim)
+
+    dihchees.configure(image=photoim)
+    dihchees.photoimage = photoim
+
+    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
+
