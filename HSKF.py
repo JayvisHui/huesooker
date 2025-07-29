@@ -2,7 +2,7 @@ from tkinter import *
 import cv2.cv2
 import numpy as np
 from tkinter import colorchooser
-import cv2
+import cv2 as cv2
 from PIL import Image as PILImage, ImageTk
  
 def show_frame(frame):

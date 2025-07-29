@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from tkinter import colorchooser
-import cv2
+import cv2 as cv2
 from HSKF import *
 import datetime
 import numpy as np
