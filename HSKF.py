@@ -1,39 +1,38 @@
-from tkinter import *
-import cv2.cv2
-import numpy as np
-from tkinter import colorchooser
-import cv2 as cv2
 from PIL import Image as PILImage, ImageTk
- 
-def show_frame(frame):
+from tkinter import *
+from tkinter import colorchooser
+import cv2
+
+def show_frame(frame): 
     frame.tkraise()
 
-
-def colp(section): 
-
-    usecol = colorchooser.askcolor()  #store to to txt file function
+ 
+def colp(label): #function to open the color gui
+    usecol = colorchooser.askcolor()
     print("Color selected:", usecol)
-    hex = usecol[1]
+    if usecol[1]:  
+        label.config(fg=usecol[1])
+    
 
-    
-    
+
+
 def opencamera(cap, dihchees, swidth, sheight):
 
     ret,frame = cap.read()
     if not ret:
         print("failed :(")
         return
-
-    cv2.imwrite("debug_raw.jpg", frame)
-
-    resized = cv2.resize((swidth, sheight))
+    
+    opencv_image = cv2.cvtColor(frame,cv2.COLOR_BGR2RGBA)
+    resized = cv2.resize(opencv_image, (swidth, sheight))
 
     captureim = PILImage.fromarray(resized)
     
     photoim = ImageTk.PhotoImage(image=captureim)
 
-    dihchees.configure(image=photoim)
     dihchees.photoimage = photoim
 
-    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
+    dihchees.configure(image=photoim)
 
+    dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
+    

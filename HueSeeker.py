@@ -2,11 +2,11 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from tkinter import colorchooser
-from cv2 import *
+import cv2
 from HSKF import *
 import datetime
 import numpy as np
-from HSCR import *
+
 
 root=Tk()
 root.title("HueSeeker.V1")
@@ -62,7 +62,6 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 
-
 ''' left side of HueSeeker, logs, color selection'''
 gooningL = Frame(mainpag,bg= "#474747")
 gooningL.pack(side="right",anchor="se",fill=BOTH,expand=True)
@@ -77,6 +76,7 @@ logscreen.pack(side="top", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
 
 Label(gooningL, fg="white",text="Insert Color Here",bg="#474747").pack(anchor='e',expand=True,fill=BOTH,padx=5)
 usebut=Button(gooningL,text="Input Desired Color", command=lambda:(colp(section),)).pack(anchor='e',expand=True,fill=BOTH,padx=5,pady=1)
+
 section = Frame(gooningL, bg="#242526",height=100,width=200)
 section.pack(side="bottom", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
 
@@ -85,6 +85,5 @@ for frame in (mainpag, intro):
     frame.grid(row=0, column=0, sticky="nsew")
 
 
-
 show_frame(intro)
-root.mainloop()
+root.mainloop() 
