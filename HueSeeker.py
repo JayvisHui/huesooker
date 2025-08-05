@@ -7,7 +7,6 @@ from HSKF import *
 import datetime
 import numpy as np
 
-
 root=Tk()
 root.title("HueSeeker.V1")
 root.minsize(width=700, height=500)
@@ -69,7 +68,7 @@ gooningL.pack(side="right",anchor="se",fill=BOTH,expand=True)
 
 Button(gooningL,text="Quit Hueseeker",command=root.destroy,fg="red",bg="grey").pack(anchor="ne", padx= 15,expand=True)
 
-Label(gooningL,text="Records",fg="white",bg="#242526").pack()
+shit = Label(gooningL,text="Records",fg="white",bg="#242526").pack()
 logscreen = Frame(gooningL, bg="#242526", height=200, width=200)
 logscreen.pack(side="top", anchor="ne",padx=5,pady=1,fill=BOTH,expand=True)
 
