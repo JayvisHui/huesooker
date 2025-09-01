@@ -7,7 +7,7 @@ from HSCR import getlimits
 def show_frame(frame): 
     frame.tkraise()
 
- x
+
 def colp(section): #function to open the color gui
     usecol = colorchooser.askcolor()
     print("Color selected:", usecol)
@@ -15,7 +15,6 @@ def colp(section): #function to open the color gui
     if usecol[1]:  
         section.config(fg=usecol[1])
         red = Label(section, text=f"selected {hex}", bg=hex, fg="white").pack()
-
 
 
 
@@ -40,6 +39,7 @@ def opencamera(cap, dihchees, swidth, sheight):
 
     s = cv2.inRange(llimit, ulimit)
     mask = PILImage.fromarray(s)
+
 
     bbox = mask.getbbox()
 
