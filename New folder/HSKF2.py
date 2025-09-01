@@ -2,12 +2,12 @@ from PIL import Image as PILImage, ImageTk
 from tkinter import *
 from tkinter import colorchooser
 import cv2
-from HSCR2 import getlimits
+from HSCR import getlimits
 
 def show_frame(frame): 
     frame.tkraise()
 
- 
+ x
 def colp(section): #function to open the color gui
     usecol = colorchooser.askcolor()
     print("Color selected:", usecol)
@@ -19,25 +19,15 @@ def colp(section): #function to open the color gui
 
 
 
-
 def opencamera(cap, dihchees, swidth, sheight):
     
     ret,frame = cap.read()
     if not ret:
         print("failed :(")
         return
-    
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        print("Camera failed to open!")
-
     yellow = [255,0,0]
     
     llimit, ulimit = getlimits(yellow)
-
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    s = cv2.inRange(hsv,llimit, ulimit)
-    
 
     opencv_image = cv2.cvtColor(frame,cv2.COLOR_BGR2RGBA)
     resized = cv2.resize(opencv_image, (swidth, sheight))
@@ -48,7 +38,7 @@ def opencamera(cap, dihchees, swidth, sheight):
     dihchees.configure(image=photoim)
     dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
 
-
+    s = cv2.inRange(llimit, ulimit)
     mask = PILImage.fromarray(s)
 
     bbox = mask.getbbox()

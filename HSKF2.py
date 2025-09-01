@@ -18,25 +18,13 @@ def colp(section): #function to open the color gui
 
 
 
-
-
-def opencamera(cap, dihchees, swidth, sheight):
+def opencamera(cap, dihchees, swidth, sheight): #camera feed function 
     
     ret,frame = cap.read()
     if not ret:
         print("failed :(")
         return
-    
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        print("Camera failed to open!")
-
     yellow = [255,0,0]
-    
-    llimit, ulimit = getlimits(yellow)
-
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    s = cv2.inRange(hsv,llimit, ulimit)
     
 
     opencv_image = cv2.cvtColor(frame,cv2.COLOR_BGR2RGBA)
@@ -48,14 +36,6 @@ def opencamera(cap, dihchees, swidth, sheight):
     dihchees.configure(image=photoim)
     dihchees.after(10,lambda: opencamera(cap, dihchees, swidth, sheight))
 
-
-    mask = PILImage.fromarray(s)
-
-    bbox = mask.getbbox()
-
-    if bbox is not None:
-        x1, y1, x2, y2 = bbox 
-        frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (0,255,0),5)
 
 
 
